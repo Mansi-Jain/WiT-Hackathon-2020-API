@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS MEMBER_INFORMATION;
+  
+CREATE TABLE MEMBER_INFORMATION (
+  unique_id VARCHAR(250) PRIMARY KEY,
+  password VARCHAR(250) NOT NULL,
+  first_name VARCHAR(250) NOT NULL,
+  last_name VARCHAR(250) NOT NULL,
+  contact_number VARCHAR(250) NOT NULL,
+  current_address VARCHAR(250) NOT NULL,
+  number_of_dependant INT NOT NULL)
+;
+
+DROP TABLE IF EXISTS ORDER_INFORMATION;
+
+CREATE TABLE ORDER_INFORMATION (
+  order_id INT PRIMARY KEY  AUTO_INCREMENT,
+  unique_id VARCHAR(250) NOT NULL,
+  order_placed_date DATE NOT NULL,
+  created_by VARCHAR(250) NOT NULL,
+  created_at DATE NOT NULL,
+  delivery_date DATE NOT NULL,
+  packets_required INT NOT NULL
+);
+
+
+
