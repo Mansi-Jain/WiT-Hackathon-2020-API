@@ -62,7 +62,7 @@ public class OrderRestController {
 				}
 			}
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 			throw new HandleException(HttpStatus.BAD_REQUEST.value(), "Upstream not Responding");
 
 		}

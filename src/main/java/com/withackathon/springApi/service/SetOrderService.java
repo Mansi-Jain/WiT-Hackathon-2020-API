@@ -15,62 +15,62 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetOrderService {
-	
+
 	@Autowired
 	MemberRepository memberRepo;
-	
+
 	@Autowired
 	OrderRepository orderRepo;
-	
-	public Order setOrder(Order theOrder)
-	{
-		String userName=theOrder.getUniqueId();
-		Date date = new Date();	
-		Order order= new Order(userName,date,theOrder.getUniqueId(),date,getDeliveryDate(),getNumberOfPackets(userName));
+
+	public Order setOrder(Order theOrder) {
+		System.out.println("Inside setOrder");
+		System.out.println("theOrder.getUniqueId()" + theOrder.getUniqueId());
+		String userName = theOrder.getUniqueId();
+		System.out.println("order is " + theOrder);
+		Date date = new Date();
+		Order order = new Order(userName, date, theOrder.getUniqueId(), date, getDeliveryDate(),
+				getNumberOfPackets(userName));
+		System.out.println("order is " + order);
 		return order;
 	}
-	
-	public Date getDeliveryDate()
-	{
+
+	public Date getDeliveryDate() {
 
 		Date dt = new Date();
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(dt); 
+		Calendar c = Calendar.getInstance();
+		c.setTime(dt);
 		c.add(Calendar.DATE, 2);
 		dt = c.getTime();
 		return dt;
 	}
-	
-	public String getNumberOfPackets(String uniqueId)
-	{
+
+	public String getNumberOfPackets(String uniqueId) {
+		System.out.println("Inside package");
 		return memberRepo.getNoOfDependent(uniqueId);
 	}
-	
+
 	public boolean isFirstOrder(String uniqueId) {
-		Integer orderCount =orderRepo.checkOrderExists(uniqueId);
+		Integer orderCount = orderRepo.checkOrderExists(uniqueId);
 		if (orderCount == 0)
-		return true;
+			return true;
 		return false;
 	}
-	
-	public Date getLatestOrderDate(String uniqueId) throws ParseException
-	{
-		Date latestOrderDate= orderRepo.getLatestOrder(uniqueId);
+
+	public Date getLatestOrderDate(String uniqueId) throws ParseException {
+		Date latestOrderDate = orderRepo.getLatestOrder(uniqueId);
 		return latestOrderDate;
 	}
-	
-	public boolean isCorrectOrder(String uniqueId) throws ParseException
-	{
 
-		Date latestDate=getLatestOrderDate(uniqueId);
-		Date currentOrderDate=new Date();
+	public boolean isCorrectOrder(String uniqueId) throws ParseException {
+
+		Date latestDate = getLatestOrderDate(uniqueId);
+		Date currentOrderDate = new Date();
 		long diff = currentOrderDate.getTime() - latestDate.getTime();
 		int diffhours = (int) (diff / (60 * 60 * 1000));
 
 		if (diffhours > 240)
-		return true;
+			return true;
 		return false;
 	}
-
 
 }
