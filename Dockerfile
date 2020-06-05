@@ -12,6 +12,7 @@ COPY pom.xml .
 RUN mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
 
 COPY . /app
+RUN chmod a+x mvnw
 RUN ./mvnw install
 
 ARG bx_dev_user=root
