@@ -67,7 +67,7 @@ public class SetOrderService {
 		long diff = currentOrderDate.getTime() - latestDate.getTime();
 		int diffhours = (int) (diff / (60 * 60 * 1000));
 
-		if (diffhours > 48)
+		if (diffhours > 240)
 		return true;
 		return false;
 	}

@@ -50,7 +50,7 @@ public class OrderRepository {
 	public List<Order> getOrderEntities(String userName) throws Exception {
 		// TODO Auto-generated method stub
 
-		String sql = "select * from order_information  where unique_id= '" + userName + "'";
+		String sql = "SELECT * FROM ORDER_INFORMATION where UNIQUE_ID ='" + userName + "'";
 
 		try {
 
@@ -62,9 +62,9 @@ public class OrderRepository {
 					order.setOrderId(rs.getInt("order_id"));
 					order.setUniqueId(rs.getString("unique_id"));
 					order.setPacketsRequired(String.valueOf(rs.getInt("packets_required")));
-					order.setCreatedAt(rs.getDate("created_at"));
-					order.setOrderDate(rs.getDate("order_placed_date"));
-					order.setDeliveryDate(rs.getDate("delivery_date"));
+					order.setCreatedAt(rs.getTimestamp("created_at"));
+					order.setOrderDate(rs.getTimestamp("order_placed_date"));
+					order.setDeliveryDate(rs.getTimestamp("delivery_date"));
 					order.setCreatedBy(rs.getString("created_by"));
 
 					return order;

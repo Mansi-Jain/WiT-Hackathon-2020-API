@@ -33,18 +33,18 @@ public class Order {
 	private String uniqueId;
 
 	@Column(name = "order_placed_date", nullable = false)
-	@JsonFormat(pattern="DD/MM/YYYY")
+	@JsonFormat(pattern="dd/MM/YYYY")
 	private Date orderDate;
 
 	@Column(name = "created_by", nullable = false)
 	private String createdBy;
 
 	@Column(name = "created_at")
-	@JsonFormat(pattern="DD/MM/YYYY")
+	@JsonFormat(pattern="dd/MM/YYYY")
 	private Date createdAt;
 
 	@Column(name = "delivery_date")
-	@JsonFormat(pattern="DD/MM/YYYY")
+	@JsonFormat(pattern="dd/MM/YYYY")
 	private Date deliveryDate;
 
 	@Column(name = "packets_required")
