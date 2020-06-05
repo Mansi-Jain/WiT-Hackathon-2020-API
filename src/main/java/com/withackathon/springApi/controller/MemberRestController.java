@@ -3,6 +3,7 @@ package com.withackathon.springApi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.withackathon.springApi.response.Response;
 
 @RestController
 @RequestMapping("/api/member")
+@CrossOrigin
 public class MemberRestController {
 
 	@Autowired
@@ -30,7 +32,6 @@ public class MemberRestController {
 		try {
 			memberRepo.insert(theMember);
 			response.setMessage("Successfully created member");
-			response.setStatus(HttpStatus.CREATED.value());
 			return new ResponseEntity<Response>(response, HttpStatus.CREATED);
 		} catch (Exception ex) {
 			ex.printStackTrace();

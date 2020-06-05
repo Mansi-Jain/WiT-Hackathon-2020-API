@@ -24,9 +24,9 @@ public class SetOrderService {
 	
 	public Order setOrder(Order theOrder)
 	{
-		String userName=theOrder.getUserName();
+		String userName=theOrder.getUniqueId();
 		Date date = new Date();	
-		Order order= new Order(userName,date,theOrder.getUserName(),date,getDeliveryDate(),getNumberOfPackets(userName));
+		Order order= new Order(userName,date,theOrder.getUniqueId(),date,getDeliveryDate(),getNumberOfPackets(userName));
 		return order;
 	}
 	

@@ -3,6 +3,7 @@ package com.withackathon.springApi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.withackathon.springApi.service.LoginService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class LoginRestController {
 
 	@Autowired
@@ -32,11 +34,9 @@ public class LoginRestController {
 		try {
 			if (loginService.isValidLogin(login)) {
 				response.setMessage("Successfully Login");
-				response.setStatus(HttpStatus.OK.value());
 				return new ResponseEntity<Response>(response, HttpStatus.OK);
 			} else {
 				response.setMessage("Wrong Credentials.Please try Again!!");
-				response.setStatus(HttpStatus.UNAUTHORIZED.value());
 				return new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 			}
 		} catch (Exception ex) {

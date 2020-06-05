@@ -30,7 +30,7 @@ public class Order {
 		
 	@Column(name = "unique_id", nullable = false)
 	@JsonView(Views.Create.class)
-	private String userName;
+	private String uniqueId;
 
 	@Column(name = "order_placed_date", nullable = false)
 	@JsonFormat(pattern="DD/MM/YYYY")
@@ -51,10 +51,10 @@ public class Order {
 	private String packetsRequired;
 	
 	
-	public Order(String userName, Date orderDate,String createdBy, Date createdAt,Date deliveryDate, String packetsRequired)
+	public Order(String uniqueId, Date orderDate,String createdBy, Date createdAt,Date deliveryDate, String packetsRequired)
 	{
 
-		this.userName=userName;
+		this.uniqueId=uniqueId;
 		this.orderDate=orderDate;
 		this.createdBy=createdBy;
 		this.createdAt=createdAt;
@@ -86,12 +86,12 @@ public class Order {
 		this.packetsRequired = packetsRequired;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUniqueId() {
+		return uniqueId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
 
 	public Date getOrderDate() {

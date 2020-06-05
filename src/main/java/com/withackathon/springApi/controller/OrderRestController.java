@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import com.withackathon.springApi.service.SetOrderService;
 
 @RestController
 @RequestMapping("/api/order")
+@CrossOrigin
 public class OrderRestController {
 
 	@Autowired
@@ -37,29 +39,24 @@ public class OrderRestController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Response> addOrder(@RequestBody @JsonView(Views.Create.class) Order theorder) {
-		boolean orderAlreadyExist = false;
 		try {
-			String uniqueId = theorder.getUserName();
+			String uniqueId = theorder.getUniqueId();
 			boolean isFirstOrder = orderService.isFirstOrder(uniqueId);
 			if (isFirstOrder) {
 				System.out.println("Inside first record");
 				Order order = orderService.setOrder(theorder);
 				orderRepo.insert(order);
 				response.setMessage("Successfully created order");
-				response.setStatus(HttpStatus.CREATED.value());
 				return new ResponseEntity<Response>(response, HttpStatus.CREATED);
 			} else {
 				boolean isCorrectOrder = orderService.isCorrectOrder(uniqueId);
 				if (isCorrectOrder) {
-					System.out.println("isCorrectOrder");
 					Order order = orderService.setOrder(theorder);
 					orderRepo.insert(order);
 					response.setMessage("Successfully created order");
-					response.setStatus(HttpStatus.CREATED.value());
 					return new ResponseEntity<Response>(response, HttpStatus.CREATED);
 				} else {
 					response.setMessage("Cannot create new order.Order is already inline");
-					response.setStatus(HttpStatus.BAD_REQUEST.value());
 					return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
 
 				}
@@ -74,13 +71,13 @@ public class OrderRestController {
 
 	// add mapping for GET /order/{userName}
 
-	@GetMapping("/{userName}")
-	public ResponseEntity<List<Order>> getOrders(@PathVariable String userName) throws Exception {
+	@GetMapping("/{uniqueId}")
+	public ResponseEntity<List<Order>> getOrders(@PathVariable String uniqueId) throws Exception {
 
-		List<Order> orders = orderRepo.getOrderEntities(userName);
+		List<Order> orders = orderRepo.getOrderEntities(uniqueId);
 
 		if (orders == null) {
-			throw new HandleException(HttpStatus.NOT_FOUND.value(), "No order found for this user - " + userName);
+			throw new HandleException(HttpStatus.NOT_FOUND.value(), "No order found for this user - " + uniqueId);
 		}
 
 		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);

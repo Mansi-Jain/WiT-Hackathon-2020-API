@@ -15,22 +15,22 @@ public class Member {
 	private String firstName;
 	private String lastName;
 	private String contactNumber;
-	private String currentAddress;
-	private String numberOfDependant;
+	private String address;
+	private String numberOfDependants;
 	private String password;
 
 	public Member() {
 
 	}
 
-	public Member(String uniqueId, String firstName, String lastName, String contactNumber, String currentAddress,
-			String numberOfDependant, String password) {
+	public Member(String uniqueId, String firstName, String lastName, String contactNumber, String address,
+			String numberOfDependants, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.uniqueId = uniqueId;
 		this.contactNumber = contactNumber;
-		this.currentAddress = currentAddress;
-		this.numberOfDependant = numberOfDependant;
+		this.address = address;
+		this.numberOfDependants = numberOfDependants;
 		this.password = password;
 
 	}
@@ -72,22 +72,22 @@ public class Member {
 		this.contactNumber = contactNumber;
 	}
 
-	@Column(name = "current_address", nullable = false)
-	public String getCurrentAddress() {
-		return currentAddress;
+	@Column(name = "address", nullable = false)
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCurrentAddress(String currentAddress) {
-		this.currentAddress = currentAddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	@Column(name = "number_of_dependant")
-	public String getNumberOfDependant() {
-		return numberOfDependant;
+	@Column(name = "number_of_dependants")
+	public String getNumberOfDependants() {
+		return numberOfDependants;
 	}
 
-	public void setNumberOfDependant(String numberOfDependant) {
-		this.numberOfDependant = numberOfDependant;
+	public void setNumberOfDependants(String numberOfDependants) {
+		this.numberOfDependants = numberOfDependants;
 	}
 
 	@Column(name = "password", nullable = false)

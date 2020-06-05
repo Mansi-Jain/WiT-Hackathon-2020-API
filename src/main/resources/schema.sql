@@ -6,8 +6,8 @@ CREATE TABLE MEMBER_INFORMATION (
   first_name VARCHAR(250) NOT NULL,
   last_name VARCHAR(250) NOT NULL,
   contact_number VARCHAR(250) NOT NULL,
-  current_address VARCHAR(250) NOT NULL,
-  number_of_dependant INT NOT NULL)
+  address VARCHAR(250) NOT NULL,
+  number_of_dependants INT NOT NULL)
 ;
 
 DROP TABLE IF EXISTS ORDER_INFORMATION;

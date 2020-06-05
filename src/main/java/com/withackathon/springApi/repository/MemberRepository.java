@@ -15,15 +15,15 @@ public class MemberRepository {
 	public void insert(Member member) {
 		 jdbcTemplate.update(
 				"insert into member_information ( unique_id , first_name , last_name , contact_number,"
-						+ "  current_address , number_of_dependant,password ) " + "values(?,?,?,?,?,?,?)",
+						+ "  address , number_of_dependants,password ) " + "values(?,?,?,?,?,?,?)",
 				new Object[] { member.getUniqueId(), member.getFirstName(), member.getLastName(),
-						member.getContactNumber(), member.getCurrentAddress(), Integer.parseInt(member.getNumberOfDependant())
+						member.getContactNumber(), member.getAddress(), Integer.parseInt(member.getNumberOfDependants())
 								,member.getPassword()
 						 });
 	}
 	
 	public String getNoOfDependent(String uniqueId) {
-	    String sql = "SELECT number_of_dependant FROM member_information WHERE unique_id=?";
+	    String sql = "SELECT number_of_dependants FROM member_information WHERE unique_id=?";
 
 	    String noOfDependent = (String) jdbcTemplate.queryForObject(
 	            sql, new Object[] { uniqueId }, String.class);
