@@ -20,7 +20,7 @@ env:
   ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
   REGISTRY_HOSTNAME: us.icr.io
   IMAGE_NAME: iks-test
-  IKS_CLUSTER: example-iks-cluster-name-or-id
+  IKS_CLUSTER: wit
   DEPLOYMENT_NAME: iks-test
   PORT: 5001
 
