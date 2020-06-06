@@ -25,28 +25,27 @@ public class Order {
 	@Column(name = "unique_id")
 	@JsonView(Views.Create.class)
 	private String uniqueId;
-	
+
 	@Column(name = "order_placed_date")
-	@JsonFormat(pattern="dd/MM/YYYY")
+	@JsonFormat(pattern = "dd/MM/YYYY")
 	private Date orderDate;
 
 	@Column(name = "created_by")
 	private String createdBy;
 
 	@Column(name = "created_at")
-	@JsonFormat(pattern="dd/MM/YYYY")
+	@JsonFormat(pattern = "dd/MM/YYYY")
 	private Date createdAt;
 
 	@Column(name = "delivery_date")
-	@JsonFormat(pattern="dd/MM/YYYY")
+	@JsonFormat(pattern = "dd/MM/YYYY")
 	private Date deliveryDate;
 
 	@Column(name = "packets_required")
 	private String packetsRequired;
-	
-	public Order()
-	{
-		
+
+	public Order() {
+
 	}
 
 	public Order(String uniqueId, Date orderDate, String createdBy, Date createdAt, Date deliveryDate,
@@ -116,5 +115,4 @@ public class Order {
 		this.packetsRequired = packetsRequired;
 	}
 
-	
 }
