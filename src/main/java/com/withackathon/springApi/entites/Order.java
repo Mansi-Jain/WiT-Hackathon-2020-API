@@ -21,6 +21,7 @@ public class Order {
 	@Column(name = "order_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
+	
 
 	@Column(name = "unique_id")
 	@JsonView(Views.Create.class)
